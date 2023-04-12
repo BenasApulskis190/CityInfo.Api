@@ -17,9 +17,9 @@ namespace CityInfo.Api.Controllers
             _map = map ?? throw new ArgumentNullException(nameof(map));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CityWithoutPointOfInterestDto>>> GetCities()
+        public async Task<ActionResult<IEnumerable<CityWithoutPointOfInterestDto>>> GetCities(string? name)
         {
-            var cityEntities = await _citiesDataRepository.GetCitiesAsync();
+            var cityEntities = await _citiesDataRepository.GetCitiesAsync(name);
 
             return Ok(_map.Map<IEnumerable<CityWithoutPointOfInterestDto>>(cityEntities));
 
